@@ -13,17 +13,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.testng.Assert;
 import org.testng.annotations.*;
 
-public class AppiumLocal {
+public class AppiumTest {
 
     public AndroidDriver driver;
     public WebDriverWait wait;
 
-    @BeforeMethod
+    @BeforeClass
     public void setup() throws MalformedURLException {
         
-        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+       DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "Android");
         desiredCapabilities.setCapability("deviceName", "Android_7.0");
         desiredCapabilities.setCapability("automationName", "uiautomator2");
@@ -32,23 +33,21 @@ public class AppiumLocal {
         desiredCapabilities.setCapability("fullReset", true);
         desiredCapabilities.setCapability("avd", "Android_7.0");
         //driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
-        AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
+        //AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
         
-    }
-    
- 
+    } 
   
-      @Test (enabled=true) public void myFirstTest() throws InterruptedException {
-        
-        assert "Cedric".equals("Cedric");
-
-        
-        //Assert.assertEquals("test","test");
+      @Test
+      public void myFirstTest() throws InterruptedException {
+                
+        Assert.assertEquals("test","test");
         
       }
     
-    @AfterMethod
+    @AfterClass
     public void teardown(){
+    	
+    	System.out.println("FIM");
         //driver.quit();
     }
 }
