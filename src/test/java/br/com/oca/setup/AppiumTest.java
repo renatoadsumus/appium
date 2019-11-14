@@ -1,5 +1,6 @@
 package br.com.oca.setup;
 
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -13,18 +14,30 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.testng.Assert;
-import org.testng.annotations.*;
+import org.junit.*;
+
+import org.junit.rules.TestWatcher;
+
+import com.microsoft.appcenter.appium.Factory;
+import com.microsoft.appcenter.appium.EnhancedAndroidDriver;
+
 
 public class AppiumTest {
 
-    public AndroidDriver driver;
-    public WebDriverWait wait;
+//    public AndroidDriver driver;
+  //  public WebDriverWait wait;
+  //
 
-    @BeforeClass
+   @Rule
+    public TestWatcher watcher = Factory.createWatcher();
+
+    private static EnhancedAndroidDriver<MobileElement> driver;
+
+
+    @Before
     public void setup() throws MalformedURLException {
         
-       DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+/*       DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "Android");
         desiredCapabilities.setCapability("deviceName", "Android_7.0");
         desiredCapabilities.setCapability("automationName", "uiautomator2");
@@ -32,19 +45,28 @@ public class AppiumTest {
         desiredCapabilities.setCapability("udid", "emulator-5554");
         desiredCapabilities.setCapability("fullReset", true);
         desiredCapabilities.setCapability("avd", "Android_7.0");
-        //driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
         //AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
+	//
+	*/
         
     } 
   
       @Test
-      public void myFirstTest() throws InterruptedException {
+      public void calculo_bitcoin_dolarTest() throws MalformedURLException, InterruptedException {
                 
         Assert.assertEquals("test","test");
         
       }
+
+      @Test
+      public void calculo_bitcoin_pesoTest() throws MalformedURLException, InterruptedException {
+
+        Assert.assertEquals("test","test");
+
+      }
     
-    @AfterClass
+    @After
     public void teardown(){
     	
     	System.out.println("FIM");
