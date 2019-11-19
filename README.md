@@ -1,5 +1,5 @@
 _README in English [here](README.en-us.md)_  
-# E2E-OCA-UY-FRONT-END
+# DEVICE FARM AWS 
 
 Projeto voltado para analise de viabilidade técnica de implentação de teste automatizados para mobile.
 
@@ -31,5 +31,4 @@ GFT TECHNOLOGIES 2019
 
 ## AUTORES
 
-* **Eliana Souza**
-* **Rubens Lobo**
+* **Renato Coutinho**
