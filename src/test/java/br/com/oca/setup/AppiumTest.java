@@ -68,6 +68,17 @@ public class AppiumTest {
 
     }
 
+   @Test
+    public void calculo_bitcoin_pesoTest() throws MalformedURLException, InterruptedException {
+
+        driver.findElementById("com.livrokotlin.bitcoincalculator:id/txt_amount").sendKeys("7000");
+        driver.findElementById("com.livrokotlin.bitcoincalculator:id/btn_calculate").click();
+
+        String resultado = driver.findElementById("com.livrokotlin.bitcoincalculator:id/txt_qtd_bitcoins").getText();
+
+        Assert.assertEquals("test", "test");
+
+    }
 
     @After
     public void teardown(){
