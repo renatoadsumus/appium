@@ -24,7 +24,7 @@ import com.microsoft.appcenter.appium.EnhancedAndroidDriver;
 
 public class AppiumTest {
 
-    public AndroidDriver driver;
+//    public AndroidDriver driver;
   //  public WebDriverWait wait;
   //
 
@@ -46,9 +46,11 @@ public class AppiumTest {
         desiredCapabilities.setCapability("fullReset", true);
         desiredCapabilities.setCapability("avd", "Android_7.0"); */
 
+	
+     	driver = Factory.createAndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
 
-        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
-        AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
+//        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+  //      AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
 
 
         
