@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.testng.Assert;
+import org.testng.*;
 import org.testng.annotations.*;
 
 public class AppiumTest {
@@ -21,28 +21,83 @@ public class AppiumTest {
     public AndroidDriver driver;
     public WebDriverWait wait;
 
-    @BeforeClass
+//    @BeforeClass
+//    public void setup() throws MalformedURLException {
+//
+//       DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+//        desiredCapabilities.setCapability("platformName", "Android");
+//        desiredCapabilities.setCapability("deviceName", "SM-G935F");
+//        //desiredCapabilities.setCapability("automationName", "uiautomator2");
+//        desiredCapabilities.setCapability("app", "/home/javier/Escritorio/app-PF-debug.apk");
+//        desiredCapabilities.setCapability("udid", "ad08160310e018e1ec");
+//        //desiredCapabilities.setCapability("fullReset", true);
+//        //desiredCapabilities.setCapability("avd", "Android_7.0");
+//        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+//       // AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
+//
+//    }
+
+
+    @BeforeTest
     public void setup() throws MalformedURLException {
-        
+
        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "Android");
-        desiredCapabilities.setCapability("deviceName", "Android_7.0");
-        desiredCapabilities.setCapability("automationName", "uiautomator2");
-        desiredCapabilities.setCapability("app", "src/test/resources/uy.com.oca.ocatarjetas_25_apps.evozi.com.apk");
-        desiredCapabilities.setCapability("udid", "emulator-5554");
+        desiredCapabilities.setCapability("deviceName", "SM-G935F");
+        //desiredCapabilities.setCapability("automationName", "uiautomator2");
+        desiredCapabilities.setCapability("app", "/home/javier/Escritorio/app-PF-debug.apk");
+        desiredCapabilities.setCapability("udid", "ad08160310e018e1ec");
         desiredCapabilities.setCapability("fullReset", true);
-        desiredCapabilities.setCapability("avd", "Android_7.0");
-        //driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
-        //AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
-        
-    } 
-  
-      @Test
-      public void myFirstTest() throws InterruptedException {
+        //desiredCapabilities.setCapability("avd", "Android_7.0");
+        driver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
+       // AppiumDriver<MobileElement> driver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), desiredCapabilities);
+
+        //driver.manage().timeouts().implicitlyWait(30, SECONDS);
+
+    }
+
+
+    @Test
+      public void loginASiRecordarTest() throws InterruptedException {
+
+        Thread.sleep(5000);
+        driver.findElementById("py.com.itau.nmb.android:id/login_num_doc").sendKeys("298976");
+        driver.findElementById("py.com.itau.nmb.android:id/login_num_cuenta").sendKeys("820008260");
+        driver.findElementById("py.com.itau.nmb.android:id/edt_login_pass").sendKeys("15000");
+
+        String resultadoActual = driver.findElementById("py.com.itau.nmb.android:id/login_recordar").getText();
+        String resultadoEsperado = "recordar documento y cuenta";
+
+
                 
-        Assert.assertEquals("test","test");
+        Assert.assertEquals(resultadoEsperado,resultadoActual);
         
       }
+
+
+    @Test
+    public void loginBConRecordarTest() throws InterruptedException {
+
+        Thread.sleep(5000);
+        driver.findElementById("py.com.itau.nmb.android:id/login_num_doc").sendKeys("298976");
+        driver.findElementById("py.com.itau.nmb.android:id/login_num_cuenta").sendKeys("820008260");
+        driver.findElementById("py.com.itau.nmb.android:id/edt_login_pass").sendKeys("15000");
+
+        driver.findElementById("py.com.itau.nmb.android:id/reminder").click();
+
+
+        String resultadoActual = driver.findElementById("py.com.itau.nmb.android:id/login_recordar").getText();
+        String resultadoEsperado = "recordar documento y cuenta";
+
+
+
+        Assert.assertEquals(resultadoEsperado,resultadoActual);
+
+    }
+
+
+
+
     
     @AfterClass
     public void teardown(){
